@@ -1,0 +1,3 @@
+~ training.language.fr.txt
+Potential-negative potential-negative-verb.txt
+Negative negative-verb.txt
