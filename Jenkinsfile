@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('---package---') { 
             steps {
-                sh "mvn package" 
+                sh "mvn package -f diploma-project" 
             }
         }
         stage('deployment project') { 
