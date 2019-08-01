@@ -1,10 +1,15 @@
 pipeline {
-  agent any {
-    stage('---package---') {
-      sh "mvn package"
+    agent any 
+    stages {
+        stage('---package---') { 
+            steps {
+                sh "mvn package" 
+            }
+        }
+        stage('deployment project') { 
+            steps {
+                sh "java -jar ./target/yoda-master-jedi-1.0-SNAPSHOT.jar"  
+            }
+        }
     }
-    stage('deployment project'){
-      sh "java -jar ./target/yoda-master-jedi-1.0-SNAPSHOT.jar"
-    }
-  }
 }
