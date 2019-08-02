@@ -8,7 +8,7 @@ pipeline {
         }
         stage('---package---') { 
             steps {
-                sh "./mvnw package" 
+                sh "./mvnw verify" 
             }
         }
         stage('deployment project') { 
