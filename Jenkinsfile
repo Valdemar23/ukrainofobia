@@ -1,6 +1,11 @@
 pipeline {
     agent any 
     stages {
+        stage('---applied plugin---') {
+            steps {
+                sh "mvn -N io.takari:maven:wrapper"
+            }
+        }
         stage('---package---') { 
             steps {
                 sh "mvn package -f diploma-project" 
