@@ -8,7 +8,7 @@ pipeline {
         }
         stage('---package---') { 
             steps {
-                sh "./mvnw package -f diploma-project" 
+                sh "./mvnw package" 
             }
         }
         stage('deployment project') { 
