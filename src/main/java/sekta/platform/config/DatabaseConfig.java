@@ -44,7 +44,7 @@ public class DatabaseConfig {//отут вся взаємодія з БД, бі�
     }
 
     @Bean
-    public LocalSessionFactoryBean localSessionFactoryBean() {//i dont know
+    public LocalSessionFactoryBean localSessionFactoryBean() {
         LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
 
         localSessionFactoryBean.setDataSource(dataSource());
@@ -56,16 +56,15 @@ public class DatabaseConfig {//отут вся взаємодія з БД, бі�
         hibernateProperties.put("hibernate.hbm2ddl.auto", hbm2ddlAuto);
 
         localSessionFactoryBean.setHibernateProperties(hibernateProperties);
-
         return localSessionFactoryBean;
     }
-
+/*
     @Bean
     public HibernateTransactionManager transactionManager() {//i dont know
         HibernateTransactionManager transactionManager =
                 new HibernateTransactionManager();
         transactionManager.setSessionFactory(localSessionFactoryBean().getObject());
         return transactionManager;
-    }
+    }*/
 
 }
