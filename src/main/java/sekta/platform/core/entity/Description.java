@@ -1,6 +1,7 @@
 package sekta.platform.core.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 //import javax.validation.constraints.NotNull;
 
 @Entity
@@ -9,6 +10,7 @@ public class Description extends Base {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrement
     private Long id;*/
     //@NotNull
+    @Size(max=2000)
     private String attribute;
     //@NotNull
     private String value;
@@ -26,6 +28,7 @@ public class Description extends Base {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getAttribute() {
         return attribute;

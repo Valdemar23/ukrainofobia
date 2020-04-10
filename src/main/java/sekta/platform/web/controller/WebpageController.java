@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sekta.platform.ai.examples.NaiveBayesExample;
 import sekta.platform.core.entity.Description;
@@ -30,8 +31,8 @@ import java.util.List;
 /**
  * Created by natad on 25.05.2016.
  */
-@Controller
 @RequestMapping("parse-site")
+@RestController
 public class WebpageController {
 
     @Autowired//дана анотація бере із Дома (Context/Container) WebpageService що живе в Home, а не створює новий пустий WebsiteDao, цей WebpageService створюєс власне самий Spring в результаті своєї роботи
@@ -70,10 +71,10 @@ public class WebpageController {
         Tag tag=new Tag();
         tag.setText(nameTag);
         tag.setWebpage(webpage);
-        tagService.createTag(tag);
+        tagService.save(tag);//true code
         redirectAttributes.addFlashAttribute("message", "User successfully created!");
 
-        Document document = null;
+        Document document = null;//begin parsing code
         try {
             document = Jsoup.connect(webpageName).get();
         } catch (IOException e) {
@@ -86,33 +87,33 @@ public class WebpageController {
         Elements commentCopy = document.select(nameTag);//class
         Session session;
         Description description = new Description();//сюди варто додати поділ на триграми разом із наївним баєсом
+        List<Description>ds=new ArrayList<>();
 
-        for (Element element : commentCopy) {
-            session=descriptionService.getCurrentSessionFactory().openSession();
+        for (Element element : commentCopy) {//maybe problem with configure db, i dont know how realize correct parsing
             if (!element.text().equals("")) {
                 String line = object.start(element.text());
                 String content;
-                if (element.text().length() > 2000) {
+                if (element.text().length() > 2000) {//cutter text
                     content = element.text();
                     content = content.substring(0, 1999);
                 } else {
                     content = element.text();
                 }
                 try {
-                    session.beginTransaction();
                     description.setAttribute(content);
                     description.setValue(line);
                     description.setTag(tag);
-                    session.save(description);
-                    session.getTransaction().commit();
-                    session.close();
+                    ds.add(description);
                 } catch (Exception e) {
-                    session.close();
                     e.printStackTrace();
                 }
                 System.out.format("The sentense \"%s\" was classified as \"%s\".%n", element.text(), line);
             }
+
+
         }
+        descriptionService.saveAll(ds);
+
         return "success-parsing-data";
     }
 }

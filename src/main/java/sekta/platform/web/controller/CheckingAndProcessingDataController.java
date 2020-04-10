@@ -36,7 +36,7 @@ public class CheckingAndProcessingDataController /*<T>*/{//цей клас по�
     //public Base checkOnExistRepeatedData(Base base,String someVar){//its temprorary variant
     public Website checkOnExistRepeatedData(String someVar,WebsiteService websiteService){//i think in this method need knowledge about reflection, for using instanceof
        // if(base instanceof Website){
-            List<Website>websites=websiteService.getAllWebsites();
+            List<Website>websites=websiteService.findAll();
             List<String> websitesNames=new ArrayList<>();
 
             for(Website websiteSingle:websites){
@@ -49,7 +49,7 @@ public class CheckingAndProcessingDataController /*<T>*/{//цей клас по�
             if(indexWebsite==-1){
                 website=new Website();//need create new webpage using webpageService
                 website.setWebsiteName(someVar);
-                websiteService.createWebsite(website);
+                websiteService.save(website);
             }else{
                 website=websites.get(indexWebsite);//index array or index on DB? In this field need index array, no DB
             }
@@ -60,7 +60,7 @@ public class CheckingAndProcessingDataController /*<T>*/{//цей клас по�
     // public Base checkOnExistRepeatedData(Base base, String someVar, Website website){
     public Webpage checkOnExistRepeatedData(String someVar, Website website,WebpageService webpageService){//its temprorary variant
         //if(base instanceof Webpage){
-            List<Webpage>webpages=webpageService.getAllWebpages();
+            List<Webpage>webpages=webpageService.findAll();
             List<String>webpagesNames=new ArrayList<>();
 
             for(Webpage webpage1:webpages){
@@ -74,7 +74,7 @@ public class CheckingAndProcessingDataController /*<T>*/{//цей клас по�
                 webpage=new Webpage();//need create new webpage using webpageService
                 webpage.setName(someVar);
                 webpage.setWebsite(website);
-                webpageService.createWebpage(webpage);
+                webpageService.save(webpage);
             }else{
                 webpage=webpages.get(indexWebpage);//index array or index on DB? In this field need index array, no DB
             }

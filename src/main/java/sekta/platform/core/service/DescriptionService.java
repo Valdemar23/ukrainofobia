@@ -2,6 +2,9 @@ package sekta.platform.core.service;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import sekta.platform.core.entity.Description;
 
 import java.util.List;
@@ -9,18 +12,7 @@ import java.util.List;
 /**
  * Created by natad on 29.05.2016.
  */
-public interface DescriptionService {//interface CRUD
-    List<Description> getAllDescriptions();
-    Description getDescriptionById(Long id);
-    Description createDescription(Description description);
-
-
-
-    Session getSession();
-    SessionFactory getCurrentSessionFactory();
-
-
-
-    Description updateDescripton(Description description);
-    void deleteDescription(Long descriptionId);
+@Transactional
+@Repository//this is class will work with DB
+public interface DescriptionService extends JpaRepository<Description,Long> {//interface CRUD
 }

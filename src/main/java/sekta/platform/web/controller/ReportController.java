@@ -1,3 +1,4 @@
+/*
 package sekta.platform.web.controller;
 
 import com.itextpdf.text.*;
@@ -189,4 +190,4 @@ public class ReportController {
             table.addCell(c5);
         }
     }
-}
+}*/

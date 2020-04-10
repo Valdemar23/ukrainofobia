@@ -1,11 +1,11 @@
+/*
 package sekta.platform.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -56,16 +56,7 @@ public class DatabaseConfig {//отут вся взаємодія з БД, бі�
         hibernateProperties.put("hibernate.hbm2ddl.auto", hbm2ddlAuto);
 
         localSessionFactoryBean.setHibernateProperties(hibernateProperties);
-
         return localSessionFactoryBean;
     }
-
-    @Bean
-    public HibernateTransactionManager transactionManager() {//i dont know
-        HibernateTransactionManager transactionManager =
-                new HibernateTransactionManager();
-        transactionManager.setSessionFactory(localSessionFactoryBean().getObject());
-        return transactionManager;
-    }
-
 }
+*/

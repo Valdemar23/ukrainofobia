@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Title</title>
+    <link href="<c:url value="/static/general.css" />" rel="stylesheet">
 </head>
 <body>
 <form method="post" action="report/getReport">

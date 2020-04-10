@@ -1,16 +1,17 @@
+/*
 package sekta.platform.core.service;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import sekta.platform.core.entity.Tag;
 
 import java.util.List;
 
-/**
- * Created by natad on 29.05.2016.
- */
 @Transactional
 @Repository//this is class will work with DB
-public interface TagService extends JpaRepository<Tag,Long> {//interface CRUD
+public interface BaseRepository<T> extends JpaRepository<T,Long> {
+    */
+/*List<T> findAllByProperty(String propertyName, Object propertyValue);*//*
+
 }
+*/
